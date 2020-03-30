@@ -1,0 +1,87 @@
+<app-layout>
+    <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">Venda - {{operacao}}</h5>  
+          <div class="row">
+            <div class="form-group col-lg-12">
+                <label for="cliente"class="control-label">Cliente:</label>
+                <select [(ngModel)]="venda.cliente" class="form-control">
+                    <option [ngValue]="null">Selecione</option>  
+                    <option *ngFor="let cliente of listaCliente" [ngValue]="cliente">{{cliente.nome}}</option>
+                </select>              
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">Adicionar Produtos</h5>  
+              <div class="row">
+                <div class="form-group col-lg-12">
+                    <label for="cliente"class="control-label">Produto:</label>
+                    <select [(ngModel)]="vendaProduto.produto" class="form-control">
+                        <option [ngValue]="null">Selecione</option>  
+                        <option *ngFor="let produto of listaProduto" [ngValue]="produto">{{produto.nome}}</option>
+                    </select>                     
+                </div>
+                <div class="form-group col-lg-4">
+                    <label for="dataVendaProduto"class="control-label">Codigo:</label>
+                    <input type="text" class="form-control" [(ngModel)]="venda.codigo" />
+                </div>
+                <div class="form-group col-lg-4">
+                  <label for="quantidade" class="control-label">Quantidade:</label>
+                  <input type="text" class="form-control" name="quantidade"
+                      [(ngModel)]="vendaProduto.quantidade" />
+                </div>
+                <div class="form-group col-lg-4">
+                  <label for="dataVendaProduto"class="control-label">Data de compra:</label>
+                  <input type="date" class="form-control" [(ngModel)]="vendaProduto.dataVendaProduto" />
+              </div>
+              
+                
+              </div>
+              
+              <div class="row" style="margin-bottom: 20px;">
+                <div class="col-lg-12">
+                    <button *ngIf="this.operacao=='Incluir'" type="button" class="btn btn-primary" style="margin-right: 10px;" (click)="adicionar()">Adicionar</button>
+                </div>
+              </div>
+
+              <div class="row" *ngIf="venda.listaVendaProduto.length > 0" >
+                <div class="col-lg-12">
+                  <table class="table">
+                    <thead>
+                      <tr>
+                        <th>Código</th>
+                        <th>Produto</th>                      
+                        <th>Quantidade</th>
+                        <th>Data de compra</th>                                 
+                        <th></th>                                   
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr *ngFor="let vendaProduto of venda.listaVendaProduto">  
+                        <th>{{venda.codigo}}</th>                      
+                        <th>{{vendaProduto.produto.nome}}</th>
+                        <td>{{vendaProduto.quantidade}}</td>
+                        <td>{{vendaProduto.dataVendaProduto | date: 'dd/MM/yyyy'}}</td>
+                        <th><a style="cursor: pointer;" (click)="removerproduto(vendaProduto)">X</a></th>
+                      </tr>                  
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+
+            </div>
+          </div>            
+          
+
+          <div class="row" style="margin-bottom: 20px; margin-top: 20px;">
+            <div class="col-lg-12">
+              <button *ngIf="this.operacao=='Incluir'" type="button" class="btn btn-primary" style="margin-right: 10px;" (click)="incluir()">Incluir</button>              
+              <button type="button" class="btn btn-primary" style="margin-right: 10px;" (click)="voltar()">Voltar</button>              
+            </div>
+          </div>
+
+        </div>
+    </div>
+</app-layout>
