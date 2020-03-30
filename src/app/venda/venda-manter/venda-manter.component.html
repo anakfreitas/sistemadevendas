@@ -60,8 +60,8 @@
                     </thead>
                     <tbody>
                       <tr *ngFor="let vendaProduto of venda.listaVendaProduto">  
-                        <th>{{venda.codigo}}</th>                      
-                        <th>{{vendaProduto.produto.nome}}</th>
+                        <td>{{venda.codigo}}</td>                      
+                        <td>{{vendaProduto.produto.nome}}</td>
                         <td>{{vendaProduto.quantidade}}</td>
                         <td>{{vendaProduto.dataVendaProduto | date: 'dd/MM/yyyy'}}</td>
                         <th><a style="cursor: pointer;" (click)="removerproduto(vendaProduto)">X</a></th>
